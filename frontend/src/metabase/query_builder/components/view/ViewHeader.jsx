@@ -20,7 +20,6 @@ import QuestionPreviewToggle from "./QuestionPreviewToggle";
 import QuestionFilters, { QuestionFilterWidget } from "./QuestionFilters";
 import { QuestionSummarizeWidget } from "./QuestionSummaries";
 
-import NativeQueryButton from "./NativeQueryButton";
 import RunButtonWithTooltip from "../RunButtonWithTooltip";
 
 import StructuredQuery from "metabase-lib/lib/queries/StructuredQuery";
@@ -182,9 +181,6 @@ export class ViewTitleHeader extends React.Component {
           </div>
         )}
         <div className="ml-auto flex align-center">
-          {NativeQueryButton.shouldRender(this.props) && (
-            <NativeQueryButton size={20} question={question} />
-          )}
           {isDirty ? (
             <Link
               className="text-brand text-bold py1 px2 rounded bg-white bg-light-hover"
