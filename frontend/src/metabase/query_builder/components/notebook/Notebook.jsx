@@ -23,7 +23,7 @@ export default function Notebook({ className, ...props }) {
     <Box className={cx(className, "relative mb4")} px={[2, 3]}>
       {NativeQueryButton.shouldRender({ question, queryBuilderMode }) && (
         <Fixed
-          bottom={20}
+          top={20}
           right={20}
           className="cursor-pointer text-brand-hover text-medium"
         >
