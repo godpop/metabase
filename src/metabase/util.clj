@@ -322,7 +322,7 @@
     (when (= result ::timeout)
       (when (instance? java.util.concurrent.Future reff)
         (future-cancel reff))
-      (throw (TimeoutException. (str (tru "Timed out after {0} milliseconds." timeout-ms)))))
+      (throw (TimeoutException. (tru "Timed out after {0} milliseconds." timeout-ms))))
     result))
 
 (defn do-with-timeout
@@ -486,7 +486,7 @@
   ;; TODO - lots of functions can be rewritten to use this, which would make them more flexible
   ^Integer [object-or-id]
   (or (id object-or-id)
-      (throw (Exception. (str (tru "Not something with an ID: {0}" object-or-id))))))
+      (throw (Exception. (tru "Not something with an ID: {0}" object-or-id)))))
 
 (def metabase-namespace-symbols
   "Delay to a vector of symbols of all Metabase namespaces, excluding test namespaces.
@@ -771,3 +771,11 @@
                                  [vertex (g vertex)]))
                           (concat independent sorted))))))
               g)))
+
+(defn lower-case-en
+  "Locale-agnostic version of `clojure.string/lower-case`.
+  `clojure.string/lower-case` uses the default locale in conversions, turning
+  `ID` into `ıd`, in the Turkish locale. This function always uses the
+  `Locale/US` locale."
+  [^CharSequence s]
+  (.. s toString (toLowerCase (Locale/US))))
